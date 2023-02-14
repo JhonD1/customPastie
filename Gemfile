@@ -7,7 +7,8 @@ gem 'puma'
 gem 'sequel'
 gem 'dotenv'
 gem 'securerandom'
-
+gem 'tilt'
+gem 'pg'
 # for testing
 gem 'pry'
 
