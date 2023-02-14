@@ -17,7 +17,7 @@ class App < Roda
       r.post do
         secret_msg = r.params['secret_message']
         msg = Message.create(
-          content: secret_msg, slug: SecureRandom.hex(16)
+          content: secret_msg, slug: SecureRandom.hex(16), password_digest: r.params['password']
         )
         msg.save
 
@@ -26,10 +26,20 @@ class App < Roda
     end
 
     r.on 'share' do
-      slug = r.params['slug']
-      msg = Message.find( slug: slug )
-
-      view 'show_secret', locals: { msg: msg }
+      r.get do
+        slug = r.params['slug']
+        binding.pry
+        view 'verify_password_secret', locals: { slug: slug }
+      end
+      
+      r.post do
+        msg = Message.find( slug: r.params['slug'] )
+        if msg.password_digest == r.params['password']
+          view 'show_secret', locals: { msg: msg }
+        else
+          r.redirect env['HTTP_REFERER']
+        end
+      end
     end
   end
 end
