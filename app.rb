@@ -29,18 +29,18 @@ class App < Roda
     end
 
     r.on 'share' do
+      # @wrong_password = nil
       r.get do
         slug = r.params['slug']
-        binding.pry
         view 'verify_password_secret', locals: { slug: slug }
       end
       
       r.post do
         msg = Message.find( slug: r.params['slug'] )
-        binding.pry
         if BCrypt::Password.new(msg.password_digest) == r.params['password']
           view 'show_secret', locals: { msg: msg }
         else
+          @wrong_password = "You have entered a wrong password"
           r.redirect env['HTTP_REFERER']
         end
       end
