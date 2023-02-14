@@ -1,5 +1,6 @@
 require 'securerandom'
 require 'pry'
+require 'bcrypt'
 
 class App < Roda
   plugin :render
@@ -16,8 +17,10 @@ class App < Roda
 
       r.post do
         secret_msg = r.params['secret_message']
+        password = BCrypt::Password.create(r.params['password'])
+        binding.pry
         msg = Message.create(
-          content: secret_msg, slug: SecureRandom.hex(16), password_digest: r.params['password']
+          content: secret_msg, slug: SecureRandom.hex(16), password_digest: password
         )
         msg.save
 
@@ -34,7 +37,8 @@ class App < Roda
       
       r.post do
         msg = Message.find( slug: r.params['slug'] )
-        if msg.password_digest == r.params['password']
+        binding.pry
+        if BCrypt::Password.new(msg.password_digest) == r.params['password']
           view 'show_secret', locals: { msg: msg }
         else
           r.redirect env['HTTP_REFERER']
