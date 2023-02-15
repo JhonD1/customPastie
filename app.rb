@@ -33,6 +33,7 @@ class App < Roda
       # @wrong_password = nil
       r.get do
         slug = r.params['slug']
+        puts "the host: #{env['HTTP_HOST']}"
         view 'verify_password_secret', locals: { slug: slug }
       end
       
