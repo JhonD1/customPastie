@@ -19,7 +19,7 @@ class App < Roda
       r.post do
         secret_msg = r.params['secret_message']
         password = BCrypt::Password.create(r.params['password'])
-        binding.pry
+
         msg = Message.create(
           content: secret_msg, slug: SecureRandom.hex(16), password_digest: password
         )
