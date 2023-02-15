@@ -13,11 +13,15 @@ GEM
     puma (6.1.0)
       nio4r (~> 2.0)
     rack (3.0.4.1)
-    roda (3.64.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
+    roda (3.65.0)
       rack
     securerandom (0.2.2)
     sequel (5.65.0)
     tilt (2.0.11)
+    webrick (1.8.1)
 
 PLATFORMS
   x86_64-linux
@@ -29,6 +33,7 @@ DEPENDENCIES
   pry
   puma
   rack
+  rackup
   roda
   securerandom
   sequel

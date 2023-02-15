@@ -9,6 +9,7 @@ gem 'dotenv'
 gem 'tilt'
 gem 'pg'
 gem 'rack'
+gem 'rackup'
 
 # for testing
 gem 'pry'
