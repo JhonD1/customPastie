@@ -25,7 +25,7 @@ class App < Roda
         )
         msg.save
 
-        view 'share_secret', locals: { secret_msg: msg }
+        view 'share_secret', locals: { secret_msg: msg, host: env['HTTP_HOST'] }
       end
     end
 
