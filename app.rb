@@ -1,6 +1,7 @@
 require 'securerandom'
 require 'pry'
 require 'bcrypt'
+require_relative 'config/create_tables'
 
 class App < Roda
   plugin :render
