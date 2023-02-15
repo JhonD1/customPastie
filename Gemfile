@@ -6,7 +6,6 @@ gem 'roda'
 gem 'puma'
 gem 'sequel'
 gem 'dotenv'
-gem 'securerandom'
 gem 'tilt'
 gem 'pg'
 gem 'rack'
@@ -16,3 +15,4 @@ gem 'pry'
 
 # for security 
 gem 'bcrypt'
+gem 'securerandom'
