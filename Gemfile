@@ -9,6 +9,8 @@ gem 'dotenv'
 gem 'securerandom'
 gem 'tilt'
 gem 'pg'
+gem 'rack'
+
 # for testing
 gem 'pry'
 
